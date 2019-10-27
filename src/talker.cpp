@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "hello world " << count;
+    ss << "Ryan Cunningham's custom message " << count;
     msg.data = ss.str();
 
     ROS_INFO("%s", msg.data.c_str());
