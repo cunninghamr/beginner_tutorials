@@ -1,7 +1,14 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+/**
+ * @file talker.cpp
+ * @brief Publisher node that emits a simple string with a counter.
+ * @author Ryan Cunningham
+ * @copyright 2019
+ */
 
 #include <sstream>
+
+#include "ros/ros.h"
+#include "std_msgs/String.h"
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
@@ -19,7 +26,7 @@ int main(int argc, char **argv) {
    * part of the ROS system.
    */
   ros::init(argc, argv, "talker");
-  
+
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the
