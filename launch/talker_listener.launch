@@ -1,0 +1,9 @@
+<launch>
+  <arg name="rate" default="1.0"/>
+
+  <node pkg="beginner_tutorials" name="talker" type="talker">
+    <param name="rate" value="$(arg rate)"/>
+  </node>
+
+  <node pkg="beginner_tutorials" name="listener" type="listener"/>
+</launch>
