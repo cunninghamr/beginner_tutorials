@@ -6,13 +6,28 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   genmsg
+  message_generation
 )
-
-catkin_package()
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(talker src/talker.cpp)
+add_service_files(
+  FILES
+  SetMsg.srv
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
+catkin_package(
+  CATKIN_DEPENDS
+  message_runtime
+)
+
+add_executable(talker src/talker.cpp src/set_msg_service.cpp)
+add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
 
 add_executable(listener src/listener.cpp)
