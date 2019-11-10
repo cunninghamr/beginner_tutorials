@@ -71,9 +71,12 @@ int main(int argc, char **argv) {
 
     double rate = 1.0;
 
+    /// create separate nodehandle for talker to get arguments from launch file
+    ros::NodeHandle talkerNH("~");
+
     /// get the rate parameter from the command line, if it was provided
     double rateParam;
-    if (n.getParam("rate", rateParam)) {
+    if (talkerNH.getParam("rate", rateParam)) {
       ROS_DEBUG_STREAM("/talker/rate param value: [" << rateParam << "]");
 
       /// check to make sure the rate parameter passed in is greater than 0
