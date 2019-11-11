@@ -3,10 +3,10 @@ project(beginner_tutorials)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  rospy
   std_msgs
   genmsg
   message_generation
+  tf
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS})
@@ -26,9 +26,18 @@ catkin_package(
   message_runtime
 )
 
+include_directories(include ${catkin_INCLUDE_DIRS})
+
 add_executable(talker src/talker.cpp src/set_msg_service.cpp)
-add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
+add_dependencies(talker beginner_tutorials_generate_messages_cpp ${beginner_tutorials_EXPORTED_TARGETS})
 
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
+
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest_gtest(set_msg_service_test test/set_msg_service_test.launch test/set_msg_service_test.cpp)
+  target_link_libraries(set_msg_service_test ${catkin_LIBRARIES})
+  add_dependencies(set_msg_service_test talker ${catkin_EXPORTED_TARGETS})
+endif()
