@@ -65,6 +65,37 @@ cd ~/catkin_ws/
 catkin_make
 ```
 
+## Unit Tests
+
+Setup catkin workspace:
+
+```
+cd ~/catkin_ws/
+source ./devel/setup.bash
+```
+
+In another terminal, start roscore (if not already started):
+
+```
+roscore
+```
+
+To execute unit tests run the following command:
+
+```
+catkin_make run_tests
+```
+
+The tests will run and the following should see messages similar to:
+
+```
+SUMMARY
+ * RESULT: SUCCESS
+ * TESTS: 2
+ * ERRORS: 0
+ * FAILURES: 0
+```
+
 ## Run
 
 Setup catkin workspace:
@@ -74,7 +105,7 @@ cd ~/catkin_ws/
 source ./devel/setup.bash
 ```
 
-Start roscore:
+Start roscore (if not already started):
 
 ```
 roscore
@@ -116,7 +147,41 @@ Start the publisher and subscriber simultaneously by entering the following comm
 roslaunch beginner_tutorials talker_listener.launch rate:="2.0"
 ```
 
-The above command shows the usage of an optional argument, rate, which controls the frequency of the publisher.
+The above command shows the usage of an optional argument, 'rate', which controls the frequency of the publisher.
+
+### Rosbag
+
+#### Recording
+
+The launch file also accepts an optional boolean argument, 'record', which will record and save a bag file (named bagout.bag) of the topics used by the nodes. NOTE: The launch file does not have recording enabled by default.
+
+To run the nodes and record a bag file, run the following command:
+
+```
+ROS_HOME=`pwd` roslaunch beginner_tutorials talker_listener.launch record:="true"
+```
+
+Use `ctrl-C` to stop the nodes, and inspect the recorded bag file using the following command:
+
+```
+rosbag info bagout.bag
+```
+
+#### Playback
+
+To play back the recorded bag, start only the listener using the following command:
+
+```
+rosrun beginner_tutorials listener
+```
+
+In a new terminal, enter the following command to play the bag file:
+
+```
+rosbag play bagout.bag
+```
+
+The command will output the bag status, and the listener should emit messages played from the bag.
 
 ### SetMsgService
 
@@ -125,6 +190,32 @@ The publisher includes a service that sets the message that is published. While 
 ```
 rosservice call /set_msg "A different custom message"
 ```
+
+### TF Verification
+
+To inspect the tf frames broadcast by the talker node, enter the following command:
+
+```
+rosrun tf tf_echo world talk
+```
+
+The output should show messages similar to:
+
+```
+At time 1573448803.496
+- Translation: [1.000, 0.000, 0.000]
+- Rotation: in Quaternion [0.000, 0.000, 0.174, 0.985]
+            in RPY (radian) [0.000, -0.000, 0.350]
+            in RPY (degree) [0.000, -0.000, 20.054]
+```
+
+To view a graph of the tf frames, enter the following command:
+
+```
+rosrun rqt_tf_tree rqt_tf_tree
+```
+
+A window will pop up showing the transformation between the /world and /talk coordinate frames.
 
 ## Logging
 
