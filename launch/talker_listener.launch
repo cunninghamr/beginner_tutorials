@@ -1,9 +1,13 @@
 <launch>
   <arg name="rate" default="1.0"/>
+  <arg name="record" default="false"/>
 
   <node pkg="beginner_tutorials" name="talker" type="talker">
     <param name="rate" value="$(arg rate)"/>
   </node>
 
   <node pkg="beginner_tutorials" name="listener" type="listener"/>
+
+  <node pkg="rosbag" name="rosbag_record_talker" type="record"
+        args="-a -O ./bagout" if="$(arg record)"/>
 </launch>
