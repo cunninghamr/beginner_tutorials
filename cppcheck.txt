@@ -1,13 +1,17 @@
 Checking include/set_msg_service.hpp...
-[include/set_msg_service.hpp:10]: (information) Include file: "beginner_tutorials/SetMsg.h" not found.
-1/4 files checked 10% done
+[include/set_msg_service.hpp:14]: (information) Include file: "beginner_tutorials/SetMsg.h" not found.
+1/5 files checked 8% done
 Checking src/listener.cpp...
-[src/listener.cpp:8]: (information) Include file: "ros/ros.h" not found.
-[src/listener.cpp:9]: (information) Include file: "std_msgs/String.h" not found.
-2/4 files checked 42% done
+[src/listener.cpp:9]: (information) Include file: "ros/ros.h" not found.
+[src/listener.cpp:10]: (information) Include file: "std_msgs/String.h" not found.
+2/5 files checked 32% done
 Checking src/set_msg_service.cpp...
-3/4 files checked 53% done
+3/5 files checked 41% done
 Checking src/talker.cpp...
-[src/talker.cpp:10]: (information) Include file: "ros/ros.h" not found.
-[src/talker.cpp:11]: (information) Include file: "std_msgs/String.h" not found.
-4/4 files checked 100% done
+[src/talker.cpp:11]: (information) Include file: "ros/ros.h" not found.
+[src/talker.cpp:12]: (information) Include file: "std_msgs/String.h" not found.
+[src/talker.cpp:13]: (information) Include file: "tf/transform_broadcaster.h" not found.
+4/5 files checked 84% done
+Checking test/set_msg_service_test.cpp...
+[test/set_msg_service_test.cpp:15]: (information) Include file: "beginner_tutorials/SetMsg.h" not found.
+5/5 files checked 100% done

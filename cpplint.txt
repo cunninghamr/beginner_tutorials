@@ -1,9 +1,13 @@
-./include/set_msg_service.hpp:0:  No #ifndef header guard found, suggested CPP variable is: INCLUDE_SET_MSG_SERVICE_HPP_  [build/header_guard] [5]
-./include/set_msg_service.hpp:18:  Single-parameter constructors should be marked explicit.  [runtime/explicit] [5]
-./include/set_msg_service.hpp:26:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::SetMsg::Request &req  [runtime/references] [2]
-./include/set_msg_service.hpp:27:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::SetMsg::Response &resp  [runtime/references] [2]
+./test/set_msg_service_test.cpp:21:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+./test/set_msg_service_test.cpp:42:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+./include/set_msg_service.hpp:30:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::SetMsg::Request& req  [runtime/references] [2]
+./include/set_msg_service.hpp:31:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::SetMsg::Response& resp  [runtime/references] [2]
+./src/listener.cpp:71:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+./src/talker.cpp:116:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+./src/talker.cpp:143:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+Done processing ./test/set_msg_service_test.cpp
 Done processing ./include/set_msg_service.hpp
 Done processing ./src/set_msg_service.cpp
 Done processing ./src/listener.cpp
 Done processing ./src/talker.cpp
-Total errors found: 4
+Total errors found: 7
