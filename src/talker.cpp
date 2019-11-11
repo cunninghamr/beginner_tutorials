@@ -10,6 +10,7 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "tf/transform_broadcaster.h"
 
 #include "set_msg_service.hpp"
 
@@ -18,7 +19,7 @@
  */
 int main(int argc, char **argv) {
   try {
-    ROS_INFO_STREAM("Subscriber started");
+    ROS_INFO_STREAM("Talker started");
 
     /**
      * The ros::init() function needs to see argc and argv so that it can perform
@@ -32,6 +33,20 @@ int main(int argc, char **argv) {
      * part of the ROS system.
      */
     ros::init(argc, argv, "talker");
+
+    /// create transformation to broadcast
+    tf::Transform transform;
+
+    /// set translation
+    transform.setOrigin(tf::Vector3(1.0, 0.0, 0.0));
+
+    /// set rotation
+    tf::Quaternion q;
+    q.setRPY(0, 0, 0.35);
+    transform.setRotation(q);
+
+    /// initialize tf broadcaster with created transformation
+    tf::TransformBroadcaster br;
 
     /**
      * NodeHandle is the main access point to communications with the ROS system.
@@ -97,6 +112,9 @@ int main(int argc, char **argv) {
      */
     int count = 0;
     while (ros::ok()) {
+      /// broadcast a transform with parent "world"
+      br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+
       /**
        * This is a message object. You stuff it with data, and then publish it.
        */
